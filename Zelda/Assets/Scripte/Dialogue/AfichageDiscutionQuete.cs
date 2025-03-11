@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class AfichageDiscutionQuete : MonoBehaviour
 {
     [SerializeField]string Nom;
-    [SerializeField,TextArea(4,6)]string [] Dialogue;
-   
+    [SerializeField,TextArea(4,6)]string [] francai;
+   [SerializeField,TextArea(4,6)]string [] espagnol;
     
     [SerializeField] GameObject Panel;
     [SerializeField] TMP_Text Text;
@@ -20,9 +20,21 @@ public class AfichageDiscutionQuete : MonoBehaviour
    
    private bool DialogueStarte;
    private int IndexDialogue;
+   bool traduction=false;
+   string [] Dialogue ;
 
     
-
+    void Start()
+        {
+            if(!traduction)
+            {
+               Dialogue = francai;
+            }
+            else
+            {
+                Dialogue = espagnol;
+            }
+        }
     public void GestionDialog()
     {
         
