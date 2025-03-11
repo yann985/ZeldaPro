@@ -204,12 +204,12 @@ Transform:
   m_GameObject: {fileID: 32108133}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.88065, y: -12.8176, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.9507008, y: -2.3176003, z: 0}
+  m_LocalScale: {x: 0.987, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1677795258}
-  m_Father: {fileID: 1114802803}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &32108136
 BoxCollider2D:
@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nom: 
-  Dialogue:
-  - 'cube : .......'
+  francai: []
+  espagnol: []
   Panel: {fileID: 1215015771}
   Text: {fileID: 1230810806}
   DailerAfichage: 1
@@ -307,8 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nom: 
-  Dialogue:
-  - oui
+  francai: []
+  espagnol: []
   Panel: {fileID: 1281767824}
   Text: {fileID: 935004952}
   DailerAfichage: 0.5
@@ -569,7 +569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &935004952
@@ -863,7 +863,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1068276335}
-  - {fileID: 32108135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1114802804
@@ -925,11 +924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nom: 
-  Dialogue:
-  - 'Cercle : salut comment tu va !'
-  - 'player: Bien et toi '
-  - 'Cercle : quoi, mais non ces pas a tois que je parle ces a lautre au font!'
-  - "Cercle : bon ten que tu est la vas luis damend\xE9 comment il va."
+  francai:
+  - bonjour comment tu vas!
+  espagnol:
+  - "\xA1hola como estas!"
   Panel: {fileID: 1281767824}
   Text: {fileID: 935004952}
   DailerAfichage: 0.05
@@ -965,10 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Nom: 
-  Dialogue:
-  - 'merci
-
-'
+  francai: []
+  espagnol: []
   Panel: {fileID: 1281767824}
   Text: {fileID: 935004952}
   DailerAfichage: 0
@@ -1633,4 +1629,5 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1565305113}
   - {fileID: 1114802803}
+  - {fileID: 32108135}
   - {fileID: 2048580503}

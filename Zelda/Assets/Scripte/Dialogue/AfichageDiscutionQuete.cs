@@ -20,13 +20,13 @@ public class AfichageDiscutionQuete : MonoBehaviour
    
    private bool DialogueStarte;
    private int IndexDialogue;
-   bool traduction=false;
+   
    string [] Dialogue ;
 
     
     void Start()
         {
-            if(!traduction)
+            if(!Manadjeur.Instance.traduction)
             {
                Dialogue = francai;
             }
