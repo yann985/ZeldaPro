@@ -1,0 +1,41 @@
+using UnityEngine;
+
+public class QueteInteraction : MonoBehaviour
+{
+    [SerializeField]string Nom;
+    [SerializeField] AfichageDiscutionQuete[] Quetes;
+    private bool DialoguePossible;
+    public int Progrétion=0;
+    
+    void Update()
+    {
+        if (DialoguePossible && Input.GetKeyDown(KeyCode.E))
+        {
+            Quetes[Progrétion].GestionDialog();
+        }
+        
+    }
+    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer==6)
+        {
+             DialoguePossible=true;
+        }
+       Debug.Log("124");
+
+
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer==6)
+        {
+            DialoguePossible=false;
+        }
+        Debug.Log("125");
+
+    }
+
+
+}
