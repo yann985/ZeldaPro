@@ -1,76 +1,82 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Mouve : MonoBehaviour
 {
-    public Animation animatio;
-    public float walkSpeed;
-    public float runSpeed;
-
-    // Imputs
-    public string droit;
-    public string gauche;
-    public string bas;
-    public string haut;
    
+    [SerializeField]  float walkSpeed;
+    [SerializeField]  float runSpeed;
+    bool Spreent;
+    bool Dega;
+    float DuraiEsquive=10;
+    [SerializeField]  Vector3 directo;
+    public  Vector3 directoFrape;
+    Vector3 VitesseDeplacement;
+    [SerializeField] Animator animator;
     
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    // Update is called once per frame
+    // Imputs
+   
     void Update()
     {
+       
+        if(!Spreent)
+        {
+            VitesseDeplacement= directo * Time.deltaTime * walkSpeed;
+        }
+        else
+        {
+            VitesseDeplacement = directo * Time.deltaTime * walkSpeed*runSpeed;
+        }
+        if((DuraiEsquive+=Time.deltaTime)<0.05)
+        {
+            VitesseDeplacement += directo; 
+        }
+        else
+        {
+            Dega=true;
+        }
+
+        transform.position +=VitesseDeplacement;
         
-        if(Input.GetKey(droit) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(walkSpeed*Time.deltaTime,0,0);
-            //animatio.Play("marche");
-        }
+        
 
-        if(Input.GetKey(droit) && Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(walkSpeed*Time.deltaTime,0,0);
-            //animatio.Play("marche");
-        }
 
-         if(Input.GetKey(gauche) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(-walkSpeed*Time.deltaTime,0,0);
-            //animatio.Play("marche");
-        }
+    }
 
-        if(Input.GetKey(gauche) && Input.GetKey(KeyCode.LeftShift))
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            transform.Translate(-walkSpeed*Time.deltaTime,0,0);
-            //animatio.Play("marche");
+            Vector3 input = context.ReadValue<Vector3>();
+           directo =input;
+           directoFrape=input.normalized;
+           animator.SetBool("Marche",true);
         }
-         if(Input.GetKey(haut) && !Input.GetKey(KeyCode.LeftShift))
+        else if (context.canceled)
         {
-            transform.Translate(0,walkSpeed*Time.deltaTime,0);
-            //animatio.Play("marche");
-        }
-
-        if(Input.GetKey(haut) && Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(0,walkSpeed*Time.deltaTime,0);
-            //animatio.Play("marche");
-        }
-         if(Input.GetKey(bas) && !Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(0,-walkSpeed*Time.deltaTime,0);
-            //animatio.Play("marche"); 
-        }
-
-         if(Input.GetKey(bas) && Input.GetKey(KeyCode.LeftShift))
-        {
-            transform.Translate(0,-walkSpeed*Time.deltaTime,0);
-            //animatio.Play("marche"); 
-        }
-
-        // ne bouge pas 
-        if(!Input.anyKeyDown)
-        {
-            
-            //animatio.Play("marche"); 
+            directo = Vector3.zero;
+            Spreent=false;
+            animator.SetBool("Marche",false);
         }
     }
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+           Spreent=!Spreent;
+        }
+        
+    }
+    public void Esquiver(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+          DuraiEsquive=0;
+          Dega=false;
+           
+        }
+       
+    }
+
 }

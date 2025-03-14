@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class QueteInteraction : MonoBehaviour
 {
     [SerializeField]string Nom;
@@ -7,14 +7,20 @@ public class QueteInteraction : MonoBehaviour
     private bool DialoguePossible;
     public int Progrétion=0;
     
-    void Update()
+     public void Interaction(InputAction.CallbackContext context)
     {
-        if (DialoguePossible && Input.GetKeyDown(KeyCode.E))
+        if (context.performed)
+        {
+            if (DialoguePossible )
         {
             Quetes[Progrétion].GestionDialog();
         }
-        
+        }
     }
+    
+        
+        
+    
     
     void OnTriggerEnter2D(Collider2D collision)
     {

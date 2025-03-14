@@ -7,18 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class Manadjeur : MonoBehaviour
 {
-    public static Manadjeur Instance;
+    public static Manadjeur instance;
 
-    public bool traduction=false;
-
-        void Awake()
-    {
+    public int traduction=0;
+   public bool DialogueStarte;
         
-        DontDestroyOnLoad(gameObject);
-        Instance=this;
-       
+        private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-    } 
+    }
+    void Start()
+    {
+        Time.timeScale=1;
+    }
+
+
+
 
 
 }

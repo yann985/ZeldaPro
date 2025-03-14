@@ -7,9 +7,10 @@ using System.Collections.Generic;
 
 public class AfichageDiscutionQuete : MonoBehaviour
 {
-    [SerializeField]string Nom;
+    
     [SerializeField,TextArea(4,6)]string [] francai;
    [SerializeField,TextArea(4,6)]string [] espagnol;
+   [SerializeField,TextArea(4,6)]string [] Catallan;
     
     [SerializeField] GameObject Panel;
     [SerializeField] TMP_Text Text;
@@ -18,7 +19,6 @@ public class AfichageDiscutionQuete : MonoBehaviour
     [SerializeField] int activationQuete;
     
    
-   private bool DialogueStarte;
    private int IndexDialogue;
    
    string [] Dialogue ;
@@ -26,19 +26,24 @@ public class AfichageDiscutionQuete : MonoBehaviour
     
     void Start()
         {
-            if(!Manadjeur.Instance.traduction)
+            if(Manadjeur.instance.traduction==0)
             {
                Dialogue = francai;
             }
-            else
+            else if(Manadjeur.instance.traduction==1)
             {
                 Dialogue = espagnol;
             }
+            else if(Manadjeur.instance.traduction==2)
+            {
+                Dialogue = Catallan;
+            }
+
         }
     public void GestionDialog()
     {
         
-            if(!DialogueStarte)
+            if(!Manadjeur.instance.DialogueStarte)
             {
                 StarteDialog();
             }
@@ -57,7 +62,7 @@ public class AfichageDiscutionQuete : MonoBehaviour
 
     private void StarteDialog()
     {
-        DialogueStarte=true;
+        Manadjeur.instance.DialogueStarte=true;
         Panel.SetActive(true);
         IndexDialogue=0;
         StartCoroutine(ShowLIgne());
@@ -72,7 +77,7 @@ public class AfichageDiscutionQuete : MonoBehaviour
         }
         else 
         {
-            DialogueStarte=false;
+            Manadjeur.instance.DialogueStarte=false;
             Panel.SetActive(false);
             Time.timeScale=1f;
             if(queteInteraction.Progrétion==activationQuete)
