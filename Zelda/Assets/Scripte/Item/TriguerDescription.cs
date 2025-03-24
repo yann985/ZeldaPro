@@ -33,6 +33,10 @@ public class TriguerDescription : MonoBehaviour
         }
         
         }
+        if(item==null)
+        {
+            visual=null;
+        }
        
     }
 }
