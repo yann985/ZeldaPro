@@ -103,7 +103,7 @@ public class Inventaire : MonoBehaviour
 
     public void EquiperItem(TriguerDescription triguerDescription=null)
     {
-        iteme = null;
+        
         ItemData ItemEquope= iteme ? iteme : triguerDescription.item ; 
         Debug.Log(ItemEquope);
         if(!ItemEquope)
@@ -186,7 +186,11 @@ public class Inventaire : MonoBehaviour
         RafraichirContenu();
         
       }
-      triguerDescription.item=null;
+      if(triguerDescription!=null)
+      {
+        triguerDescription.item=null;
+      }
+      
       RafraichirContenu();
     }
 

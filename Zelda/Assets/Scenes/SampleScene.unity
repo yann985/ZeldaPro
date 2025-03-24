@@ -14839,6 +14839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerTransform: {fileID: 1565305113}
   abtitudePlayer: {fileID: 1565305118}
+  attaque: {fileID: 1565305117}
+  xP: {fileID: 1565305122}
 --- !u!114 &782683587
 MonoBehaviour:
   m_ObjectHideFlags: 0
