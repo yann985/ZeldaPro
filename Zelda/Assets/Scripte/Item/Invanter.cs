@@ -118,6 +118,7 @@ public class Inventaire : MonoBehaviour
             ItemEquope=null;
             RafraichirContenu();
             triguerDescription.item=null;
+            return;
         }
       if (ItemEquope.consomable)
       {

@@ -93,12 +93,12 @@ public class Acheteur : MonoBehaviour
 
     
     }
-    void ActivePanelVent()
+    public void ActivePanelVent()
     {
      
             PanelleVante.SetActive(true);
     }
-    void ActivePanelAchat()
+    public void ActivePanelAchat()
     {
          PanelleAchat.SetActive(true);
            
