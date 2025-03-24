@@ -16,6 +16,7 @@ public class Acheteur : MonoBehaviour
      public TMP_Text textItem;
      public Image image;
      int NobrePoche = 81;
+     bool marchan;
     
     [SerializeField]Button button;
     
@@ -35,8 +36,9 @@ public class Acheteur : MonoBehaviour
     {
         if (context.performed)
         {
-            if ( Inventaire.Instance.marchan)
+            if ( marchan)
         {
+            Inventaire.Instance.marchan=true;
             PanelleComerce.SetActive(true);
             button.Select();
 
@@ -47,13 +49,14 @@ public class Acheteur : MonoBehaviour
     {
         if (context.performed)
         {
-            if (Inventaire.Instance.marchan)
+            if (marchan)
         {
             PanelleAchat.SetActive(false);
             PanelleVante.SetActive(false);
             if ( !PanelleAchat && !PanelleVante)
             {
                 PanelleComerce.SetActive(false);
+                Inventaire.Instance.marchan=false;
             }
 
 
@@ -72,7 +75,7 @@ public class Acheteur : MonoBehaviour
     
         if (collision.gameObject.layer==6)
         {
-             Inventaire.Instance.marchan=true;
+             marchan=true;
         }
 
 
@@ -84,10 +87,21 @@ public class Acheteur : MonoBehaviour
     
         if (collision.gameObject.layer==6)
         {
-             Inventaire.Instance.marchan=false;
+            marchan=false;
         }
 
 
     
     }
+    void ActivePanelVent()
+    {
+     
+            PanelleVante.SetActive(true);
+    }
+    void ActivePanelAchat()
+    {
+         PanelleAchat.SetActive(true);
+           
+    }
+
 }
