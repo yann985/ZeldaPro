@@ -34,6 +34,7 @@ public class Inventaire : MonoBehaviour
     [SerializeField] private Attaque attaque;
     ItemData iteme;
     public int argent;
+    public bool marchan;
     
 
     private void Awake()
@@ -109,6 +110,14 @@ public class Inventaire : MonoBehaviour
         {
             Debug.Log("vide");
             return;
+        }
+        if(marchan)
+        {
+            argent+=ItemEquope.valus;
+            RetirerItem(ItemEquope);
+            ItemEquope=null;
+            RafraichirContenu();
+            triguerDescription.item=null;
         }
       if (ItemEquope.consomable)
       {

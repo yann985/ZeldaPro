@@ -9,12 +9,14 @@ public class Acheteur : MonoBehaviour
 {
     [SerializeField] private Inventaire inventaire;
     [SerializeField] GameObject PanelleComerce;
+    [SerializeField] GameObject PanelleAchat;
+    [SerializeField] GameObject PanelleVante;
      [SerializeField] ItemData itemData;
      public string nameitem;
      public TMP_Text textItem;
      public Image image;
      int NobrePoche = 81;
-    bool marchan;
+    
     [SerializeField]Button button;
     
     public void BuyItem(ItemData itemData)
@@ -22,14 +24,18 @@ public class Acheteur : MonoBehaviour
         if (!Inventaire.Instance.InventairePlein())
         {
             Inventaire.Instance.AjouterItem(itemData);
-            Inventaire.Instance.argent -= itemData.valus;
+            if(Inventaire.Instance.argent > itemData.valus)
+            {
+                Inventaire.Instance.argent -= itemData.valus;
+            }
+            
         }
     }
     public void Interaction(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            if (marchan)
+            if ( Inventaire.Instance.marchan)
         {
             PanelleComerce.SetActive(true);
             button.Select();
@@ -41,9 +47,18 @@ public class Acheteur : MonoBehaviour
     {
         if (context.performed)
         {
-            if (marchan)
+            if (Inventaire.Instance.marchan)
         {
-            PanelleComerce.SetActive(false);
+            PanelleAchat.SetActive(false);
+            PanelleVante.SetActive(false);
+            if ( !PanelleAchat && !PanelleVante)
+            {
+                PanelleComerce.SetActive(false);
+            }
+
+
+            
+            
             button.Select();
 
         }
@@ -57,7 +72,7 @@ public class Acheteur : MonoBehaviour
     
         if (collision.gameObject.layer==6)
         {
-             marchan=true;
+             Inventaire.Instance.marchan=true;
         }
 
 
@@ -69,7 +84,7 @@ public class Acheteur : MonoBehaviour
     
         if (collision.gameObject.layer==6)
         {
-             marchan=false;
+             Inventaire.Instance.marchan=false;
         }
 
 
