@@ -53,7 +53,7 @@ public class Acheteur : MonoBehaviour
         {
             PanelleAchat.SetActive(false);
             PanelleVante.SetActive(false);
-            if ( !PanelleAchat && !PanelleVante)
+            if ( !PanelleAchat.activeSelf && !PanelleVante.activeSelf)
             {
                 PanelleComerce.SetActive(false);
                 Inventaire.Instance.marchan=false;
