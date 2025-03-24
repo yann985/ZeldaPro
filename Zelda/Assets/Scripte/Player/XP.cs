@@ -4,9 +4,9 @@ public class XP : MonoBehaviour
 {
      [SerializeField] GameObject  BarXP;
     public float XPTotal;
-     [SerializeField]private float XPMax = 20;
-     [SerializeField]private float XPDuNiveaux ;
-     [SerializeField]private float poinDeConpetance;
+    [SerializeField]private float XPMax = 20;
+    [SerializeField]private float XPDuNiveaux ;
+    private float poinDeConpetance;
     //Public int Niveaux;
 
 

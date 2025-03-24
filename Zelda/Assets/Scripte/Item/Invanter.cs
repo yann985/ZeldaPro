@@ -117,7 +117,16 @@ public class Inventaire : MonoBehaviour
             RetirerItem(ItemEquope);
             ItemEquope=null;
             RafraichirContenu();
-            triguerDescription.item=null;
+            for (int i = 0; i < contenu.Count; i++)
+        {
+            
+            triguerDescription.stoc=contenu[i].stoc; 
+        }
+            if( triguerDescription.stoc <=1)
+            {
+               triguerDescription.item=null;
+            }
+            
             return;
         }
       if (ItemEquope.consomable)

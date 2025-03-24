@@ -8,9 +8,10 @@ public class TriguerDescription : MonoBehaviour
 {
     [SerializeField] Button button;
     public Image visual;
-        public TMP_Text Text;
+    public TMP_Text Text;
     public ItemData item;
     [SerializeField] Description description;
+    public int stoc;
     
     // Update is called once per frame
     void Update()

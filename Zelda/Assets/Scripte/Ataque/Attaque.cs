@@ -6,6 +6,7 @@ public class Attaque : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     RaycastHit2D raycastResult;
     [SerializeField] float MaxDistance;
+    public int forc;
     public bool BLocage = false;
       public float poinAttaqueEpee=1;
       public float hemorragie;  
@@ -40,7 +41,7 @@ public class Attaque : MonoBehaviour
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
-                    monstre.Dommages(poinAttaqueEpee, hemorragie, fracture, empoisonnement);
+                    monstre.Dommages(poinAttaqueEpee+forc , hemorragie, fracture, empoisonnement);
                     animator.SetBool("CoupEpee", true);
                     
                 }
@@ -60,7 +61,7 @@ public class Attaque : MonoBehaviour
                 {
                     
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
-                    monstre.Dommages(poinAttaqueEpee*2 ,hemorragie, fracture, empoisonnement);
+                    monstre.Dommages(poinAttaqueEpee*2+forc ,hemorragie, fracture, empoisonnement);
                     animator.SetBool("CoupEpeeLour", true);
                 }
            }

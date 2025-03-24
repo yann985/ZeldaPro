@@ -7,11 +7,10 @@ public class AbtitudePlayer : MonoBehaviour
     [SerializeField] GameObject vieImage;
      [SerializeField] GameObject  EnduroImage;
     public float vie=100;
-    float vieMax=100;
+    public float vieMax=100;
     public float Enduro=100;
-    float EnduroMax=100;
-    public float
- pointArmure;
+    public float EnduroMax=100;
+    public float pointArmure;
   
 
 
