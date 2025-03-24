@@ -38,6 +38,7 @@ public class Acheteur : MonoBehaviour
         {
             if ( marchan)
         {
+             Time.timeScale=1;
             Inventaire.Instance.marchan=true;
             PanelleComerce.SetActive(true);
             button.Select();
@@ -55,6 +56,7 @@ public class Acheteur : MonoBehaviour
             PanelleVante.SetActive(false);
             if ( !PanelleAchat.activeSelf && !PanelleVante.activeSelf)
             {
+                Time.timeScale=0;
                 PanelleComerce.SetActive(false);
                 Inventaire.Instance.marchan=false;
             }

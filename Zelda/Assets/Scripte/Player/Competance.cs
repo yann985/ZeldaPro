@@ -1,23 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 public class Competance : MonoBehaviour
 {
     [SerializeField] AbtitudePlayer  abtitudePlayer;
     [SerializeField] Attaque  attaque;
     [SerializeField] GameObject panel;
+    [SerializeField] XP xP;
+    [SerializeField] TMP_Text tMP_Text;
     bool autel;
-    
-     void AfichageMenuAmelioration(InputAction.CallbackContext context)
+    void Update()
     {
-        if (context.performed)
+        tMP_Text.text="Vos points de compétence"+xP.poinDeConpetance.ToString();
+    }
+
+    public void AfichageMenuAmelioration(InputAction.CallbackContext context)
+    {
+        if (context.performed && autel)
         {
             panel.SetActive(true);
             Time.timeScale=0;
         }
     }
-     void FermeturMenuAmelioration(InputAction.CallbackContext context)
+    public void FermeturMenuAmelioration(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && autel)
         {
              panel.SetActive(false);
              Time.timeScale=1;
@@ -50,23 +57,42 @@ public class Competance : MonoBehaviour
 
    public void AjoutVie()
    {
-        abtitudePlayer.vie+=10;
+        if(xP.poinDeConpetance!=0)
+        {
+            abtitudePlayer.vie+=10;
         abtitudePlayer.vieMax+=10;
+        xP.poinDeConpetance--;
+        }
+        
    }
    public void AjoutEndurance()
    {
-        abtitudePlayer.Enduro+=20;
+        if(xP.poinDeConpetance!=0)
+        {
+            abtitudePlayer.Enduro+=20;
         abtitudePlayer.EnduroMax+=20;
+        xP.poinDeConpetance--;
+        }
+        
    }
    public void AjoutForce()
    {
-    attaque.forc+=10;
+    if(xP.poinDeConpetance!=0)
+    {
+        attaque.forc+=10;
+        xP.poinDeConpetance--;
+    }
+    
    }
    public void AjoutManiman()
    {
-        
-       attaque.hemorragie+=2;  
+        if(xP.poinDeConpetance!=0)
+        {
+            attaque.hemorragie+=2;  
        attaque.empoisonnement+=2;
        attaque.fracture+=2;
+       xP.poinDeConpetance--;
+        }
+       
    }
 }

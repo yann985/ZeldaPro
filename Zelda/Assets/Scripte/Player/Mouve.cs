@@ -28,7 +28,7 @@ public class Mouve : MonoBehaviour
         {
             VitesseDeplacement = directo * Time.deltaTime * walkSpeed*runSpeed;
         }
-        if((DuraiEsquive+=Time.deltaTime)<0.05)
+        if((DuraiEsquive+=Time.deltaTime)<0.05 && Time.timeScale==1)
         {
             VitesseDeplacement += directo; 
         }

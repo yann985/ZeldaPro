@@ -6,7 +6,7 @@ public class XP : MonoBehaviour
     public float XPTotal;
     [SerializeField]private float XPMax = 20;
     [SerializeField]private float XPDuNiveaux ;
-    private float poinDeConpetance;
+    public float poinDeConpetance;
     //Public int Niveaux;
 
 
