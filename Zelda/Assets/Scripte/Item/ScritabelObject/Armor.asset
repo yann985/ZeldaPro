@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ad7937afe4d3a4fb8ed4c71265038b, type: 3}
+  m_Name: Armor
+  m_EditorClassIdentifier: 
+  Nom: 
+  description: 
+  Visual: {fileID: 0}
+  Prefab: {fileID: 0}
+  consomable: 0
+  stacable: 1
+  typeEquipement: 0
+  soins: 0
+  pointArmure: 10
+  dega: 0
+  porter: 0
+  degaguen: 0
+  portergeun: 0
+  valus: 0

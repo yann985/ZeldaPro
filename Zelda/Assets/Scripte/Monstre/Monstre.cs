@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Monstre : MonoBehaviour
@@ -5,8 +7,21 @@ public class Monstre : MonoBehaviour
     [SerializeField] private Attaque attaque;  // Référence au joueur
     [SerializeField] private float HP = 100f;  // Points de vie du monstre
     [SerializeField] private float speed = 2f; // Vitesse de déplacement
+    [SerializeField] private int frape = 10;
     [SerializeField] private float maxDistance = 10f; // Distance maximale du Raycast
     [SerializeField] private LayerMask layerMask; // Masque de collision pour le Raycast
+    [SerializeField] private int XPGagnier;
+    [SerializeField] private XP xP;
+    [SerializeField] private int sensibilitehemorragie;
+    [SerializeField] private int sensibiliteFracture;
+    [SerializeField] private int sensibiliteEmpoisonement;
+    [SerializeField] private List<GameObject> gameObjects;
+
+    private bool activeEmpoisonement;
+    private bool activeHemoragi;
+    private bool activeFractur;
+
+
     bool dectetion;
      private float Cadace=5;
     
@@ -14,6 +29,14 @@ public class Monstre : MonoBehaviour
     
     void Update()
     {
+        if(activeEmpoisonement)
+        {
+            HP-=0.05f;
+        }
+        if(activeFractur)
+        {
+            speed = speed/2;
+        }
         // Direction vers le joueur
         Vector2 direction = (attaque.transform.position - transform.position).normalized;
         float distance=Vector2.Distance(transform.position,attaque.transform.position);
@@ -42,9 +65,17 @@ public class Monstre : MonoBehaviour
            {
                 if(raycastResult.transform.CompareTag("player"))
                 {
+                    if(activeHemoragi)
+                    {
+                        HP -= HP/20;
+                    }
+                     if(activeFractur)
+                    {
+                        frape = frape/2;
+                    }
                     AbtitudePlayer abtitudePlayer = raycastResult.transform.GetComponent<AbtitudePlayer>();
-                    abtitudePlayer.Dommages(10);
-                    Debug.Log("contact");
+                    abtitudePlayer.Dommages(frape);
+                    
                     Cadace=0;
                 }
             
@@ -52,13 +83,36 @@ public class Monstre : MonoBehaviour
           
     }
 
-    public void Dommages(int degats)
+    public void Dommages(float degats, float hemorragie, float fracture, float empoisonnement )
     {
         HP -= degats;
-        Debug.Log($"HP du monstre: {HP}");
+       
+       
         if (HP <= 0)
         {
             Destroy(gameObject); // Détruit l'ennemi quand il n'a plus de vie
+            Inventaire.Instance.argent+= Random.Range(1,50);
+            xP.XPTotal+=XPGagnier;
+            if(gameObjects.Count>0)
+            {
+                Debug.Log("drop");
+                int Drop=Random.Range(0,gameObjects.Count);
+                Instantiate(gameObjects[Drop],transform.position,transform.rotation);
+            }
+            
+
+        }
+        if ( hemorragie >=Random.Range( 0,sensibilitehemorragie) )
+        {
+            activeHemoragi=true;
+        }
+        if ( hemorragie >=Random.Range( 0,sensibiliteFracture) )
+        {
+            activeFractur=true;
+        }
+        if ( hemorragie >=Random.Range( 0,sensibiliteEmpoisonement) )
+        {
+            activeEmpoisonement=true;
         }
     }
     

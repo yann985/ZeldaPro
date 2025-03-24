@@ -7,6 +7,14 @@ public class Attaque : MonoBehaviour
     RaycastHit2D raycastResult;
     [SerializeField] float MaxDistance;
     public bool BLocage = false;
+      public float poinAttaqueEpee=1;
+      public float hemorragie;  
+      public float empoisonnement;
+      public float fracture;
+      public float poinPorteEpee=1;
+      public float poinAttaqueGuen;
+      public float poinPorteGuen;
+
     [SerializeField] Animator animator;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,12 +35,12 @@ public class Attaque : MonoBehaviour
     {
         if (context.performed && BLocage==false)
         {
-           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, MaxDistance,layerMask))
+           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, poinPorteEpee,layerMask))
            {
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
-                    monstre.Dommages(10);
+                    monstre.Dommages(poinAttaqueEpee, hemorragie, fracture, empoisonnement);
                     animator.SetBool("CoupEpee", true);
                     
                 }
@@ -46,13 +54,13 @@ public class Attaque : MonoBehaviour
         if (context.performed && BLocage==false)
         {
             Debug.Log("Atta");
-           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, MaxDistance,layerMask))
+           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized,poinPorteEpee,layerMask))
            {
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
                     
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
-                    monstre.Dommages(10*2);
+                    monstre.Dommages(poinAttaqueEpee*2 ,hemorragie, fracture, empoisonnement);
                     animator.SetBool("CoupEpeeLour", true);
                 }
            }
@@ -81,12 +89,12 @@ public class Attaque : MonoBehaviour
         if (context.performed && BLocage==false)
         {
             Debug.Log("Gune");
-           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, MaxDistance*2,layerMask))
+           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, poinPorteGuen,layerMask))
            {
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
-                    monstre.Dommages(10*4);
+                    monstre.Dommages(poinAttaqueGuen,0,0,0);
                     animator.SetBool("Pistol",true);
                     
                 }

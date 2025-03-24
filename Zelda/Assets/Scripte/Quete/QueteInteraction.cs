@@ -28,7 +28,6 @@ public class QueteInteraction : MonoBehaviour
         {
              DialoguePossible=true;
         }
-       Debug.Log("124");
 
 
     }
@@ -39,7 +38,7 @@ public class QueteInteraction : MonoBehaviour
         {
             DialoguePossible=false;
         }
-        Debug.Log("125");
+       
 
     }
 
