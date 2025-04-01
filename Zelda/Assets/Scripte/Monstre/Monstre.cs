@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
+
+
 
 public class Monstre : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Monstre : MonoBehaviour
     [SerializeField] private float HP = 100f;  // Points de vie du monstre
     [SerializeField] private float speed = 2f; // Vitesse de déplacement
     [SerializeField] private int frape = 10;
-    [SerializeField] private float maxDistance = 10f; // Distance maximale du Raycast
+    [SerializeField] private float maxDistance = 2f; // Distance maximale du Raycast
     [SerializeField] private LayerMask layerMask; // Masque de collision pour le Raycast
     [SerializeField] private int XPGagnier;
     [SerializeField] private XP xP;
@@ -16,6 +18,8 @@ public class Monstre : MonoBehaviour
     [SerializeField] private int sensibiliteFracture;
     [SerializeField] private int sensibiliteEmpoisonement;
     [SerializeField] private List<GameObject> gameObjects;
+    [SerializeField] private Rigidbody2D  rb;
+    
 
     private bool activeEmpoisonement;
     private bool activeHemoragi;
@@ -39,13 +43,17 @@ public class Monstre : MonoBehaviour
         }
         // Direction vers le joueur
         Vector2 direction = (attaque.transform.position - transform.position).normalized;
-        float distance=Vector2.Distance(transform.position,attaque.transform.position);
+        float distance = Vector2.Distance(transform.position, attaque.transform.position);
+
+        
+
         // Raycast pour détecter le joueur
         RaycastHit2D raycastResult = Physics2D.Raycast(transform.position, direction, maxDistance, layerMask);
 
         // Affichage du Raycast dans la scène pour le debug
         Debug.DrawRay(transform.position, direction * maxDistance, Color.red);
-        if(distance<10 )
+
+        if(distance < 10 )
         {
             dectetion=true;
             
@@ -53,15 +61,16 @@ public class Monstre : MonoBehaviour
         if(distance>20)
         {
             dectetion=false;
+            rb.linearVelocity=Vector2.zero;
         }
         if(dectetion==true && distance>2)
         {
-            transform.position=Vector2.MoveTowards(transform.position,attaque.transform.position,speed*Time.deltaTime);
+           rb.linearVelocity = direction*5;
         }
 
 
 
-        if(raycastResult && (Cadace+=Time.deltaTime)>5 )
+        if(raycastResult && (Cadace+=Time.deltaTime) > 5 )
            {
                 if(raycastResult.transform.CompareTag("player"))
                 {
@@ -76,10 +85,14 @@ public class Monstre : MonoBehaviour
                     AbtitudePlayer abtitudePlayer = raycastResult.transform.GetComponent<AbtitudePlayer>();
                     abtitudePlayer.Dommages(frape);
                     
+                    
+                    
                     Cadace=0;
                 }
             
            }
+
+          
           
     }
 

@@ -8,21 +8,19 @@ public class Attaque : MonoBehaviour
     [SerializeField] float MaxDistance;
     public int forc;
     public bool BLocage = false;
-      public float poinAttaqueEpee=1;
-      public float hemorragie;  
-      public float empoisonnement;
-      public float fracture;
-      public float poinPorteEpee=1;
-      public float poinAttaqueGuen;
-      public float poinPorteGuen;
+    public float poinAttaqueEpee=1;
+    public float hemorragie;  
+    public float empoisonnement;
+    public float fracture;
+    public float poinPorteEpee=1;
+    public float poinAttaqueGuen;
+    public float poinPorteGuen;
+    [SerializeField] AbtitudePlayer abtitudePlayer;
 
     [SerializeField] Animator animator;
+    
    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -30,22 +28,34 @@ public class Attaque : MonoBehaviour
         Debug.DrawRay(transform.position,mouve.directoFrape.normalized*MaxDistance,Color.red);
         animator.SetFloat("DirectionX",mouve.directoFrape.x);
         animator.SetFloat("DireectionY",mouve.directoFrape.y);
+        if(Input.GetKey(KeyCode.I))
+        {
+            Debug.Log("teste18");
+        }
 
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed && BLocage==false)
         {
-           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, poinPorteEpee,layerMask))
+            if(abtitudePlayer.Enduro>5)
+                    {
+                        if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized, poinPorteEpee,layerMask))
            {
+
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
+                    
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
                     monstre.Dommages(poinAttaqueEpee+forc , hemorragie, fracture, empoisonnement);
                     animator.SetBool("CoupEpee", true);
                     
                 }
            }
+           abtitudePlayer.Enduro-=15;
+                    }
+           
+
         }
         
         
@@ -55,7 +65,9 @@ public class Attaque : MonoBehaviour
         if (context.performed && BLocage==false)
         {
             Debug.Log("Atta");
-           if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized,poinPorteEpee,layerMask))
+            if(abtitudePlayer.Enduro>10)
+            {
+                if(raycastResult = Physics2D.Raycast(transform.position,mouve.directoFrape.normalized,poinPorteEpee,layerMask))
            {
                 if(raycastResult.transform.CompareTag("Truc"))
                 {
@@ -65,6 +77,10 @@ public class Attaque : MonoBehaviour
                     animator.SetBool("CoupEpeeLour", true);
                 }
            }
+            abtitudePlayer.Enduro-=30;
+            }
+
+           
         }
         
         
@@ -96,10 +112,15 @@ public class Attaque : MonoBehaviour
                 {
                     Monstre monstre = raycastResult.transform.GetComponent<Monstre>();
                     monstre.Dommages(poinAttaqueGuen,0,0,0);
-                    animator.SetBool("Pistol",true);
+                    
                     
                 }
            }
+           animator.SetBool("Pistol",true);
+        }
+        else
+        {
+            animator.SetBool("Pistol",false);
         }
     }
     public void finAttaque()

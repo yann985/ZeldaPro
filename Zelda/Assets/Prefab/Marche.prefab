@@ -1990,7 +1990,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
+  m_Sprite: {fileID: 531580636437363183, guid: cdb497fb4f07e8e43afa2789e466ef8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2018,10 +2018,13 @@ MonoBehaviour:
   PanelleAchat: {fileID: 1991505201080610934}
   PanelleVante: {fileID: 0}
   itemData: {fileID: 11400000, guid: dd5f94d28ac48ad49afe68b1a4c56c38, type: 2}
+  DailerAfichage: 0
   nameitem: Truc
   textItem: {fileID: 7762262743804528124}
   image: {fileID: 7356374293533834905}
   button: {fileID: 5930590733563472465}
+  buttonVente: {fileID: 0}
+  buttonAchat: {fileID: 0}
 --- !u!114 &1417804697596625605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2115,6 +2118,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eb3866e1-1a74-4642-8250-8277bb9cfb7f
     m_ActionName: 'Player/Retour[/XInputControllerWindows/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c63315ad-f763-4665-a46f-037d2e755a8d
+    m_ActionName: 'Blag/New action[/Keyboard/q,/Keyboard/w,/Keyboard/e,/Keyboard/i,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2158,7 +2165,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8828125, y: 1}
+    oldSize: {x: 1.03, y: 1.98}
     newSize: {x: 0.8828125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

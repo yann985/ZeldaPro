@@ -11,8 +11,26 @@ public class Competance : MonoBehaviour
     bool autel;
     void Update()
     {
+         
+
+    if (Manadjeur.instance.traduction==0)
+    {
         tMP_Text.text="Vos points de compétence"+xP.poinDeConpetance.ToString();
+      
     }
+    else if(Manadjeur.instance.traduction==1)
+    {
+        tMP_Text.text="Tus puntos de habilidad"+xP.poinDeConpetance.ToString();
+    }
+    else if(Manadjeur.instance.traduction==2)
+    {
+        tMP_Text.text="Els teus punts d'habilitat"+xP.poinDeConpetance.ToString();
+    }
+    
+   
+        
+    }
+   
 
     public void AfichageMenuAmelioration(InputAction.CallbackContext context)
     {

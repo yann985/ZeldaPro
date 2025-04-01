@@ -1,6 +1,6 @@
-using System;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using UnityEditor.Overlays;
+
 using UnityEngine;
 
 public class SystemeSovegad : MonoBehaviour
@@ -9,7 +9,6 @@ public class SystemeSovegad : MonoBehaviour
   [ SerializeField] AbtitudePlayer abtitudePlayer;
   [ SerializeField] Attaque attaque;
   [ SerializeField] XP xP;
-
   
 
     // Update is called once per frame
@@ -28,7 +27,7 @@ public class SystemeSovegad : MonoBehaviour
 
     private void Recharge()
     {
-        string filePach = Application.persistentDataPath+"/Savdata.jiSon";
+        string filePach = Application.persistentDataPath+"/Savdata.jSon";
         string jsonData = System.IO.File.ReadAllText(filePach);
         SavedData savedData = JsonUtility.FromJson<SavedData>(jsonData);
         PlayerTransform.transform.position= savedData.pausitionPlayer;
@@ -45,12 +44,14 @@ public class SystemeSovegad : MonoBehaviour
         xP.XPTotal = savedData.XPTotal;
         xP.poinDeConpetance = savedData.poinDeConpetance;
         Inventaire.Instance.argent = savedData.argent;
+        SceneManager.LoadScene( savedData.scene);
 
 
     }
 
-    private void SaveData()
+    public void SaveData()
     {
+        UnityEngine.SceneManagement.Scene currentScene = SceneManager.GetActiveScene();
         SavedData savedData = new SavedData
         {
             pausitionPlayer=PlayerTransform.position,
@@ -70,12 +71,12 @@ public class SystemeSovegad : MonoBehaviour
             enduroMax = abtitudePlayer.EnduroMax,
             XPTotal = xP.XPTotal,
             poinDeConpetance = xP.poinDeConpetance,
-            argent = Inventaire.Instance.argent 
-            
+            argent = Inventaire.Instance.argent ,
+            scene = currentScene.buildIndex
 
         };
         string jsonData = JsonUtility.ToJson(savedData);
-        string filePach = Application.persistentDataPath+"/Savdata.jiSon";
+        string filePach = Application.persistentDataPath+"/Savdata.jSon";
         Debug.Log(filePach);
         System.IO.File.WriteAllText(filePach,jsonData);
        
@@ -97,5 +98,6 @@ class SavedData
     public float XPTotal;
      public float poinDeConpetance;
      public int argent;
+     public int scene;
     
 }

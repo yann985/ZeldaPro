@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5046776667206360451}
   - component: {fileID: 2239682732622540303}
   - component: {fileID: 4543635620122841698}
-  m_Layer: 1
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1886829999636916100}
   - component: {fileID: 9062330920674086459}
   - component: {fileID: 2554037861165274250}
-  m_Layer: 1
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 2756893062521991204}
   - component: {fileID: 4609767683016265982}
   - component: {fileID: 1056159358819985206}
-  m_Layer: 1
+  m_Layer: 7
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,12 +326,10 @@ GameObject:
   - component: {fileID: 688271530877482460}
   - component: {fileID: 3703816100948086675}
   - component: {fileID: 2509916572433107904}
-  - component: {fileID: 1446797601425360198}
-  - component: {fileID: 5519669136009456717}
   - component: {fileID: 383253138974560746}
   - component: {fileID: 420035080052749021}
   - component: {fileID: 203463628340684326}
-  m_Layer: 1
+  m_Layer: 7
   m_Name: CubDialog
   m_TagString: Truc
   m_Icon: {fileID: 0}
@@ -346,7 +344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5611457851576616580}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9507008, y: -2.3176003, z: 0}
   m_LocalScale: {x: 0.987, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -397,8 +395,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -8255722798210815769, guid: a65310b3e5042b14a8f245b20bb0589a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -447,7 +445,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.26, y: 1.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -469,9 +467,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attaque: {fileID: 0}
   HP: 12
-  speed: 4
+  speed: 500
   frape: 10
-  maxDistance: 10
+  maxDistance: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -482,48 +480,7 @@ MonoBehaviour:
   sensibiliteEmpoisonement: 0
   gameObjects:
   - {fileID: 8470628063925056949, guid: 90bff78d6f2b51e4488e4e22bd61eec0, type: 3}
---- !u!114 &1446797601425360198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5611457851576616580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed451e0fb926fc844afef560577e168a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  francai:
-  - "\r\ngrougrou je suis m\xE9chant\r\n"
-  - "\r\ngrougrou je suis m\xE9chant\r\n"
-  espagnol:
-  - grugru soy malo
-  - grugru soy malo
-  Catallan:
-  - "grugrou \u200B\u200Bs\xF3c dolent"
-  - "grugrou \u200B\u200Bs\xF3c dolent"
-  Panel: {fileID: 0}
-  Text: {fileID: 0}
-  DailerAfichage: 0.05
-  queteInteraction: {fileID: 0}
-  activationQuete: 5
---- !u!114 &5519669136009456717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5611457851576616580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a830350832a270647972b3d943959420, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Nom: 
-  Quetes:
-  - {fileID: 1446797601425360198}
-  "Progr\xE9tion": 0
+  rb: {fileID: 383253138974560746}
 --- !u!50 &383253138974560746
 Rigidbody2D:
   serializedVersion: 5
@@ -550,7 +507,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!61 &420035080052749021
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -589,7 +546,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.26, y: 1.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -644,7 +601,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Squive[/XInputControllerWindows/buttonEast]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5519669136009456717}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: QueteInteraction, Assembly-CSharp
         m_MethodName: Interaction
         m_Mode: 0
@@ -674,6 +631,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9a445f2f-c5a4-46e6-8117-dbdf4752bff4
     m_ActionName: 'Player/Invanter[/XInputControllerWindows/start]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb3866e1-1a74-4642-8250-8277bb9cfb7f
+    m_ActionName: 'Player/Retour[/XInputControllerWindows/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c63315ad-f763-4665-a46f-037d2e755a8d
+    m_ActionName: 'Blag/New action[/Keyboard/q,/Keyboard/w,/Keyboard/e,/Keyboard/i,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

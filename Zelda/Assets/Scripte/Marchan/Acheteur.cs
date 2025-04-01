@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Diagnostics;
 
 
 public class Acheteur : MonoBehaviour
@@ -12,6 +14,8 @@ public class Acheteur : MonoBehaviour
     [SerializeField] GameObject PanelleAchat;
     [SerializeField] GameObject PanelleVante;
      [SerializeField] ItemData itemData;
+     [SerializeField] float DailerAfichage;
+    
      public string nameitem;
      public TMP_Text textItem;
      public Image image;
@@ -19,10 +23,15 @@ public class Acheteur : MonoBehaviour
      bool marchan;
     
     [SerializeField]Button button;
+
+    [SerializeField]Button buttonVente;
+    [SerializeField]Button buttonAchat;
+    bool tempReaction;
+   
     
     public void BuyItem(ItemData itemData)
     {
-        if (!Inventaire.Instance.InventairePlein())
+        if (!Inventaire.Instance.InventairePlein() && Inventaire.Instance.argent >itemData.valus)
         {
             Inventaire.Instance.AjouterItem(itemData);
             if(Inventaire.Instance.argent > itemData.valus)
@@ -34,33 +43,48 @@ public class Acheteur : MonoBehaviour
     }
     public void Interaction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
-            if ( marchan)
+            if ( marchan && !PanelleAchat.activeSelf && !PanelleVante.activeSelf && !PanelleComerce.activeSelf)
         {
-             Time.timeScale=1;
+            Time.timeScale=0;
             Inventaire.Instance.marchan=true;
             PanelleComerce.SetActive(true);
             button.Select();
+            
+            StartCoroutine(AttendAparitionEcran());
 
         }
+        
+
         }
+
     }
      public void Quitter(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+             
             if (marchan)
         {
-            PanelleAchat.SetActive(false);
-            PanelleVante.SetActive(false);
-            if ( !PanelleAchat.activeSelf && !PanelleVante.activeSelf)
+            
+            if ( PanelleAchat.activeSelf || PanelleVante.activeSelf || PanelleComerce.activeSelf)
             {
-                Time.timeScale=0;
-                PanelleComerce.SetActive(false);
+                PanelleAchat.SetActive(false);
+                PanelleVante.SetActive(false);
+                
+                PanelleComerce.SetActive(!PanelleComerce.activeSelf);
+                if (!PanelleComerce.activeSelf &&  !PanelleVante.activeSelf && !PanelleAchat.activeSelf )
+                {
+                    Time.timeScale=1;
+                    StopCoroutine(AttendAparitionEcran());
+                     tempReaction=false;
+                }
                 Inventaire.Instance.marchan=false;
+               
+                
             }
-
+            
 
             
             
@@ -98,12 +122,45 @@ public class Acheteur : MonoBehaviour
     public void ActivePanelVent()
     {
      
+            if(tempReaction)
+            {
             PanelleVante.SetActive(true);
+            buttonVente.Select();
+            PanelleComerce.SetActive(false);
+            Inventaire.Instance.marchan=true;
+            }
+
+        
+     
+
+            
     }
     public void ActivePanelAchat()
     {
-         PanelleAchat.SetActive(true);
+        if(tempReaction)
+        {
+             PanelleAchat.SetActive(true);
+         buttonAchat.Select();
+         PanelleComerce.SetActive(false);
+        }
+        
            
+        
+         
+           
+    }
+    private IEnumerator AttendAparitionEcran()
+    {
+         yield return new WaitForSecondsRealtime(DailerAfichage);
+        tempReaction=true;
+        UnityEngine.Debug.Log(tempReaction);
+        
+        
+          
+       
+        
+        
+        
     }
 
 }

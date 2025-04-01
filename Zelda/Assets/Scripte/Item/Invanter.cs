@@ -113,6 +113,11 @@ public class Inventaire : MonoBehaviour
         }
         if(marchan)
         {
+            if(ItemEquope.valus>argent)
+            {
+                return;
+            }
+            Debug.Log("comerce");
             argent+=ItemEquope.valus;
             RetirerItem(ItemEquope);
             ItemEquope=null;

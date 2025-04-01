@@ -14,6 +14,8 @@ public class Mouve : MonoBehaviour
     public  Vector3 directoFrape;
     Vector3 VitesseDeplacement;
     [SerializeField] Animator animator;
+     [SerializeField] AbtitudePlayer abtitudePlayer;
+    
     
     // Imputs
    
@@ -22,27 +24,45 @@ public class Mouve : MonoBehaviour
        
         if(!Spreent)
         {
-            VitesseDeplacement= directo * Time.deltaTime * walkSpeed;
+            VitesseDeplacement = directo * Time.deltaTime * walkSpeed;
         }
         else
         {
-            VitesseDeplacement = directo * Time.deltaTime * walkSpeed*runSpeed;
+            if(abtitudePlayer.Enduro>=1)
+            {
+                abtitudePlayer.Enduro-=0.5f;
+                VitesseDeplacement = directo * Time.deltaTime * walkSpeed*runSpeed;
+            }
+            else
+            {
+                Spreent=false;
+            }
+            
         }
         if((DuraiEsquive+=Time.deltaTime)<0.05 && Time.timeScale==1)
         {
-            VitesseDeplacement += directo; 
+             if(abtitudePlayer.Enduro>0)
+            {
+            
+              transform.position += VitesseDeplacement*2; 
+            }
         }
         else
         {
             Dega=true;
         }
+       
+        
 
-        transform.position +=VitesseDeplacement;
+        transform.position += VitesseDeplacement;
+        animator.SetFloat("DirectionX",directo.x);
+        animator.SetFloat("DireectionY",directo.y);
         
         
 
-
+        Debug.Log(VitesseDeplacement);
     }
+    
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -55,15 +75,17 @@ public class Mouve : MonoBehaviour
         }
         else if (context.canceled)
         {
-            directo = Vector3.zero;
+            directo = Vector2.zero;
             Spreent=false;
             animator.SetBool("Marche",false);
+            VitesseDeplacement=Vector2.zero;
         }
     }
     public void Sprint(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+           
            Spreent=!Spreent;
         }
         
@@ -72,8 +94,14 @@ public class Mouve : MonoBehaviour
     {
         if (context.performed)
         {
-          DuraiEsquive=0;
-          Dega=false;
+            if(abtitudePlayer.Enduro>20)
+            {
+                abtitudePlayer.Enduro-=50f;
+                DuraiEsquive=0;
+                Dega=false;
+            }
+            
+          
            
         }
        
